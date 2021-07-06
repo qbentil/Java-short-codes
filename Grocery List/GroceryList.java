@@ -7,7 +7,7 @@ public class GroceryList {
 
     public void addList(String item){
         myList.add(item);
-        System.out.println("Item added successfully");
+        System.out.println(item+" added to Store");
     }
 
     public void printList(){
