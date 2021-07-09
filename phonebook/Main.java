@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static Phone phone = new Phone("SamSung A30");
+    private static Phone phone = new Phone("PHONE_NAME");
     public static void main(String[] args) {
 	    boolean switchedOff = false;
 	    startPhone();
