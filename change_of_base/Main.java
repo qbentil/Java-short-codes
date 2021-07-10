@@ -6,7 +6,6 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         boolean quit = false;
-        //System.out.println(containDigit(1100110.01, 0));
         while(!quit){
             int num;
             System.out.println("Enter 7 to Print actions: ");
