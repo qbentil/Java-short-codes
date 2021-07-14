@@ -90,16 +90,16 @@ public class Main {
         }
         return (int)decNum;
     }
-    public static int decToHexadecimal(int decimalNumber){
-        int remainder, i=0;
-        double hexNum =0;
-        while (decimalNumber !=0){
+    public static String decToHexadecimal(int decimalNumber){
+        int remainder;
+        String hexNum = "";   
+        char hexchars[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'}; 
+        while (decimalNumber > 0){
             remainder = decimalNumber % 16;
-            hexNum = (hexNum + remainder * Math.pow(10, i));
-            i++;
+            hexNum = hexchars[remainder] + hexNum;
             decimalNumber/=16;
         }
-        return (int)hexNum;
+        return hexNum;
     }
     public static int HexToDecimal(int hexNum){
         int remainder, i=0;
