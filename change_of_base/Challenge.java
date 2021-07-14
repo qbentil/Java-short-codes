@@ -1,3 +1,6 @@
+// Themanbentil made it💖
+// Follow up on https//:qbentil.netlify.com
+
 import java.util.Scanner;
 
 public class Main{
