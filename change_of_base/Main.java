@@ -1,17 +1,21 @@
-package academy.Bentilzone;
+package Bentilzone;
 
 import java.util.Scanner;
 
 public class Main {
-    public static Scanner scanner = new Scanner(System.in);
+
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
+
+        // print Program Menu
+        menu();
         boolean quit = false;
         while(!quit){
+            System.out.print("Enter menu Option: ");
             int num;
-            System.out.println("Enter 7 to Print actions: ");
             while (!scanner.hasNextInt()){
                 System.out.println("Invalid menu input");
-                System.out.println("Enter 7 to Print actions ");
+                menu();
                 scanner.next();
             }
             num = scanner.nextInt();
@@ -21,25 +25,13 @@ public class Main {
                     quit = true;
                     break;
                 case 1:
-                    binToDecimal();
+                    fromDecimal();
                     break;
                 case 2:
-                    decToBinary();
+                    fromBinary();
                     break;
                 case 3:
-                    decToOctal();
-                    break;
-                case 4:
-                    octToDecimal();
-                    break;
-                case 5:
-                    decToHexadecimal();
-                    break;
-                case 6:
-                    HexToDecimal();
-                    break;
-                case 7:
-                    printMenu();
+                    menu();
                     break;
                 default:
                     System.out.println("Action not found!");
@@ -47,17 +39,55 @@ public class Main {
             }
         }
     }
-    public static int binToDecimal(double binaryNumber){
-        int remainder, i=0, decNum =0;
-        while (binaryNumber !=0){
-            remainder = (int)binaryNumber % 10;
-            decNum = (int) (decNum + remainder * Math.pow(2, i));
-            i++;
-            binaryNumber/=10;
+
+    // Initing function
+
+    // Decimal to others1
+    public static void fromDecimal() {
+        int num;
+        System.out.print("Enter Decimal Number: ");
+        while (!scanner.hasNextInt()){
+            System.out.println("Invalid Decimal input!");
+            System.out.println("Enter an Decimal Number: ");
+            scanner.next();
         }
-        return decNum;
+        num = scanner.nextInt();
+
+        // Output calculateed figures
+        System.out.println("Binary number: " + decToBinary(num));
+        System.out.println("Octal number: " + decToOctal(num));
+        System.out.println("Hexadecimal number: " + decToHexadecimal(num) + "\n");
+
+
+
     }
-    public static int decToBinary(int decimalNumber){
+
+
+    // comnverting from binary
+    public static void fromBinary() {
+        String str;
+        System.out.print("Enter Binary Number: ");
+
+        str = scanner.next();
+        while (!str.matches("^[01]+$")){
+            System.out.println("Invalid Binary number!");
+            System.out.print("Enter Binary number: ");
+            // scanner.nextLine();
+            str = scanner.next();
+        }
+
+        int num = Integer.parseInt(str);
+
+
+        // Output calculated figures
+        System.out.println("Decimal number: " + binToDecimal(num));
+        System.out.println("Octal number: " + binToOct(num));
+        System.out.println("Hexadecimal number: " + binToHex(num));
+    }
+
+
+    // Decimal Calculation
+    static int decToBinary(int decimalNumber){
         int remainder, i=0;
         double binNum =0;
         while (decimalNumber !=0){
@@ -68,7 +98,7 @@ public class Main {
         }
         return (int)binNum;
     }
-    public static int decToOctal(int decimalNumber){
+    static int decToOctal(int decimalNumber){
         int remainder, i=0;
         double octNum =0;
         while (decimalNumber !=0){
@@ -79,21 +109,10 @@ public class Main {
         }
         return (int)octNum;
     }
-    public static int octToDecimal(int octalNumber){
-        int remainder, i=0;
-        double decNum =0;
-        while (octalNumber !=0){
-            remainder = octalNumber % 10;
-            decNum = (decNum + remainder * Math.pow(8, i));
-            i++;
-            octalNumber/=10;
-        }
-        return (int)decNum;
-    }
-    public static String decToHexadecimal(int decimalNumber){
+    static String decToHexadecimal(int decimalNumber){
         int remainder;
-        String hexNum = "";   
-        char hexchars[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'}; 
+        String hexNum = "";
+        char hexchars[]={'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
         while (decimalNumber > 0){
             remainder = decimalNumber % 16;
             hexNum = hexchars[remainder] + hexNum;
@@ -101,109 +120,39 @@ public class Main {
         }
         return hexNum;
     }
-    public static int HexToDecimal(int hexNum){
-        int remainder, i=0;
-        double decNum =0;
-        while (hexNum !=0){
-            remainder = hexNum % 10;
-            decNum = (decNum + remainder * Math.pow(16, i));
+
+
+    // Binary Calculations
+    static int binToDecimal(int binaryNumber){
+        int remainder, i=0, decNum =0;
+        while (binaryNumber !=0){
+            remainder = binaryNumber % 10;
+            decNum += remainder * Math.pow(2, i);
             i++;
-            hexNum/=10;
+            binaryNumber/=10;
         }
-        return (int)decNum;
+        return decNum;
     }
-    public static void binToDecimal(){
-        double num;
-        System.out.println("Enter Binary number: ");
-        while (!scanner.hasNextDouble()){
-            System.out.println("Invalid binary input!");
-            System.out.println("Enter a binary number");
-            scanner.next();
-        }
-        num = scanner.nextDouble();
-        if(containDigit(num, 0) || containDigit(num, 0)){
-            System.out.println("Decimal: "+binToDecimal(num));
-        }else{
-            System.out.println("Number is not binary");
-        }
+
+    static int binToOct(int binaryNumber)
+    {
+        int octal = binToDecimal(binaryNumber);
+        return decToOctal(octal);
     }
-    public static void decToBinary(){
-        int num;
-        System.out.println("Enter an integer: ");
-        while (!scanner.hasNextInt()){
-            System.out.println("Invalid integer input!");
-            System.out.println("Enter an integer: ");
-            scanner.next();
-        }
-        num = scanner.nextInt();
-        System.out.println("Binary number: "+decToBinary(num));
+
+    static String binToHex(int binaryNumber)
+    {
+        int decimal = binToDecimal(binaryNumber);
+        return decToHexadecimal(decimal);
     }
-    public static void decToOctal(){
-        int num;
-        System.out.println("Enter an integer: ");
-        while (!scanner.hasNextInt()){
-            System.out.println("Invalid integer input!");
-            System.out.println("Enter an integer: ");
-            scanner.next();
-        }
-        num = scanner.nextInt();
-        System.out.println("Octal Number: "+decToOctal(num));
-    }
-    public static void octToDecimal(){
-        int num;
-        System.out.println("Enter an octal number: ");
-        while (!scanner.hasNextInt()){
-            System.out.println("Invalid octal input!");
-            System.out.println("Enter an octal number");
-            scanner.next();
-        }
-        num = scanner.nextInt();
-        System.out.println("Decimal: "+octToDecimal(num));
-    }
-    public static void HexToDecimal(){
-        int num;
-        System.out.println("Enter a hexadecimal number: ");
-        while (!scanner.hasNextInt()){
-            System.out.println("Invalid hexadecimal input!");
-            System.out.println("Enter a hexadecimal number");
-            scanner.next();
-        }
-        num = scanner.nextInt();
-        System.out.println("Decimal: "+HexToDecimal(num));
-    }
-    public static void decToHexadecimal(){
-        int num;
-        System.out.println("Enter an integer: ");
-        while (!scanner.hasNextInt()){
-            System.out.println("Invalid integer input!");
-            System.out.println("Enter an integer number");
-            scanner.next();
-        }
-        num = scanner.nextInt();
-        System.out.println("Hexadecimal number: "+decToHexadecimal(num));
-    }
-    public static boolean containDigit(double number, int digit){
-        int rem;
-        while (number > 0){
-            rem = (int)number % 10;
-            if(rem == digit){
-                return true;
-            }
-            number /=10;
-        }
-        return false;
-    }
-    public static void printMenu(){
+
+    static void menu(){
         System.out.println("===============================");
-        System.out.println("Program Menu: \nPress: " +
+        System.out.println("Program Menu:" +
                 "\n0- to Quit program" +
-                "\n1- to Convert binary to decimal" +
-                "\n2- to Convert Decimal to Binary number" +
-                "\n3- to Convert Decimal to Octal number" +
-                "\n4- to Convert Octal number to Decimal" +
-                "\n5- to Convert Decimal to Hexadecimal number" +
-                "\n6- to Convert Hexadecimal number to Decimal" +
-                "\n7- to Print program actions menu");
+                "\n1- to Convert from Decimal" +
+                "\n2- to Convert from Binary" +
+                "\n3- to Print program actions menu");
         System.out.println("===============================");
     }
 }
