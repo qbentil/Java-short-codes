@@ -7,8 +7,9 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
 
-        // print Program Menu
+        // printing Program Menu
         menu();
+        
         boolean quit = false;
         while(!quit){
             System.out.print("Enter menu Option: ");
