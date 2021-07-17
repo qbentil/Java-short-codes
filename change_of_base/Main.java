@@ -103,7 +103,7 @@ public class Main {
         double octNum =0;
         while (decimalNumber !=0){
             remainder = decimalNumber % 8;
-            octNum = (octNum + remainder * Math.pow(10, i));
+            octNum = octNum + (remainder * Math.pow(10, i));
             i++;
             decimalNumber/=8;
         }
