@@ -1,9 +1,9 @@
-package academy.Bentilzone;
-
 import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+    
+    
     public static void main(String[] args) {
         float x1, x2, y1, y2;
         System.out.print("Enter x1: ");
@@ -14,7 +14,7 @@ public class Main {
         x2 = scanner.nextFloat();
         System.out.print("Enter y2: ");
         y2 = scanner.nextFloat();
-        System.out.printf("Length of line is: %.3f",lengthOfLine(x1, x2,y1,y2));
+        System.out.printf("Length of line is: %.3f",lengthOfLine(x1, x2,y1,y2));  //Final Output
 
     }
     public static double lengthOfLine(float x1, float x2,float y1,float y2){
