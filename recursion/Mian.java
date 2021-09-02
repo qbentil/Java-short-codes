@@ -21,15 +21,15 @@ class Main{
         }else {
             System.out.println("Enter a number");
         }
-        System.out.println(firstFactorial(num));
+        System.out.println(find_factorial(num));
     }
   
   
-    public static int firstFactorial(int num) {
+    public static int find_factorial(int num) {
         if (num == 1 || num == 0 ){ //Return the number if it is 0 or 1
             return num;
         }
-        return firstFactorial(num-1) *num;
+        return find_factorial(num-1) *num;  //Using recursion
   }
 }
 
