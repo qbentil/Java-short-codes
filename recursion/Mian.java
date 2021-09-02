@@ -26,7 +26,7 @@ class Main{
   
   
     public static int firstFactorial(int num) {
-        if (num == 1){
+        if (num == 1 || num == 0 ){ //Return the number if it is 0 or 1
             return num;
         }
         return firstFactorial(num-1) *num;
