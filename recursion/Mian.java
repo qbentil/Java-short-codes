@@ -14,7 +14,7 @@ class Main{
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main (String[] args) {  
-        int num = 1;
+        int num = 1; //1 is an identity element of multitiplication
         System.out.println("Enter your option: ");
         if(scanner.hasNextInt()){
             num = scanner.nextInt();
